@@ -1,0 +1,7 @@
+# comment
+docs/*
+/tests
+examples
+*.md
+.gitignore
+LICENSE
