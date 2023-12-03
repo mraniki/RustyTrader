@@ -1,15 +1,9 @@
-FROM python:3.11
+FROM rust:1.67
 
 
 ##
 # Environment variables
 #
-ENV VIRTUAL_ENV=/opt/venv
-RUN python3 -m venv $VIRTUAL_ENV
-
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-ENV TT_DOCKER=True
-ENV ENV_FOR_DYNACONF=default
 ENV OP_PATH=/usr/bin/op
 ENV OP_SERVICE_ACCOUNT_TOKEN=None
 
@@ -24,7 +18,7 @@ RUN op --version
 # Deploy app
 #
 COPY . /app
-RUN pip install --no-cache-dir /app
+RUN cargo install --path /app
 
 ##
 # Healthcheck and PORT
@@ -35,7 +29,7 @@ HEALTHCHECK --interval=5s CMD curl --fail http://localhost:8080 || exit 1
 ##
 # Run app
 #
-CMD [ "python", "/app/tt/app.py" ]
+CMD [ "/app/rustic_trader" ]
 
 
 
