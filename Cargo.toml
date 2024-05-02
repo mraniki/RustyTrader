@@ -5,4 +5,4 @@ edition = "2023"
 
 [dependencies]
 # Add your dependencies here, e.g., serde for JSON handling
-serde = { version = "1.0.199", features = ["derive"] }
+serde = { version = "1.0.200", features = ["derive"] }
